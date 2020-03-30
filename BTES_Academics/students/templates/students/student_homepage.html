@@ -1,0 +1,83 @@
+{% extends 'students/basic.html' %}
+{% block title %} Student | Home {% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'student_homepage' %}">Home</a></li>
+          <li><a href="{% url 'studentCourses' %}">See Content</a></li>
+          <li><a href="{% url 'student_test' %}">Tests</a></li>
+          <li><a href="{% url 'studentResults' %}">My Results</a></li>
+          <li><a href="{% url 'student_homepage' %}">Welcome, Username</a></li>
+        </ul>
+{% endblock %}
+{% block body %}
+<!--Banner-->
+  <div class="banner">
+    <div class="bg-color">
+      <div class="container">
+        <div class="row">
+          <div class="banner-text text-center">
+            <div class="text-border">
+              <h2 class="text-dec">Trust & Quality</h2>
+            </div>
+            <div class="intro-para text-center quote">
+              <p class="big-text">Learning Today . . . Leading Tomorrow.</p>
+            </div>
+            <a href="#feature" class="mouse-hover">
+              <div class="mouse"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Banner-->
+  <!--Feature-->
+  <div class="container">
+    <div class="row" style="background-color:#f2f2f2">
+      <div class="header-section text-center" >
+        <h2 style="font-size: 45px;padding: 10px 20px 30px;color:#5FCF80;">We Provide</h2>
+        <p style="font-size:15px;">BTES focuses on strategic and practical approach in providing training to students and working professionals. Under the close guidance and supervision of our experienced professionals, you will be trained on various technical aspects to tackle industry challenges faced regularly in your professional life.</p>
+        <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
+      </div>
+    </div>
+    <div class="row">
+      <div class="container conbox mb-3">
+        <div class="row">
+          {% load static %}
+        <div class="col-md-4 col-sm-6 mb-3">
+                  <div class="service-box text-center hvr-bounce-out hvr-grow-shadow">
+                    <div class="icon-box">
+                      <img class="card-img-top" src="{% static 'img/experts.png' %}" alt="Card image cap" style="background-color:black;width:200px;height:200px;">
+                    </div>
+                    <div class="icon-text">
+                      <h4 class="ser-text">Courses Developed By Industry Experts</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <div class="service-box text-center hvr-bounce-out hvr-grow-shadow">
+                    <div class="icon-box fade show" style="opacity: 2">
+                      <img class="card-img-top" src="{% static 'img/place.png' %}" alt="Card image cap" style="background-color:black;width:200px;height:200px;">
+                    </div>
+                    <div class="icon-text">
+                      <h4 class="ser-text">100% Placements Assistance TO Students</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <div class="service-box text-center hvr-bounce-out hvr-grow-shadow">
+                    <div class="icon-box">
+                      <img class="card-img-top" src="{% static 'img/trainings.png' %}" alt="Card image cap" style="background-color:black;width:200px;height:200px;">
+                    </div>
+                    <div class="icon-text">
+                      <h4 class="ser-text">Live/Real Time Project Based Trainings</h4>
+                    </div>
+                  </div>
+                </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- end of Feature -->
+{% endblock %}

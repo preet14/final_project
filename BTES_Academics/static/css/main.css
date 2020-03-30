@@ -1,0 +1,84 @@
+.mtq_css_letter_button {
+    width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 40px;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -khtml-border-radius: 40px;
+    font-size: 30px;
+    line-height: 40px;
+    text-decoration: none;
+    text-align: center;
+    font-family: Arial,Helvetica,sans-serif;
+}
+.mtq_color_green .mtq_css_button, .mtq_color_green .mtq_css_letter_button {
+    color:#fff;
+background:#00930E;
+}
+.mtq_quiz_area div {
+    max-width: none !important;
+}
+
+
+.mtq_quiz_area div {
+    max-width: none !important;
+}
+.mtq_marker, #mtq_quiz_results, .mtq_preload, .mtq_navigator {
+    display: none;
+}
+.mtq_wrong_marker {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url(/wp-content/plugins/mtouch-quiz/images/wrong.png) no-repeat 0 0;
+}
+
+.mtq_correct_marker {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url(/wp-content/plugins/mtouch-quiz/images/correct.png) no-repeat 0 0;
+}
+
+.mtq_color_green .mtq_answer_table tr:hover td {
+    color: #000;
+    background:#E6F5E7;
+}
+.mtq_quiz_area th, .mtq_quiz_area td, .mtq_quiz_area tr td {
+    border: none;
+    padding: 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    vertical-align: middle;
+}
+.entry-content table td {
+    text-align: left;
+    font-size: 16px;
+}
+.mtq_answer_table td {
+    padding-top: .5em !important;
+    padding-bottom: .5em !important;
+}
+.entry-content td, .comment-content td {
+    border-top: 1px solid #ededed;
+    padding: 7px 14px;
+}
+.mtq_answer_td {
+    margin-left: .25em;
+}
+caption, th, td {
+    font-weight: 400;
+    text-align: left;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    margin-left: 0px;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+.mtq_clickable {
+    cursor: pointer;
+}

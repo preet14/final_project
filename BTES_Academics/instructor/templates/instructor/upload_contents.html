@@ -1,0 +1,71 @@
+{% extends 'instructor/basic.html' %}
+{% block title %} Instructor | Edit Contents {% endblock %}
+{% block links %}
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<!--===================================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gfg.min.css' %}">
+  <!--==================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+  <!--===================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">
+  <!--===================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+
+{% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'instructorHome' %}" >Home</a></li>
+          <li><a href="{% url 'seeContents' %}">See/Edit Content</a></li>
+          <li><a href="{% url 'uploadContents' %}" style="color:#5FCF80;">Upload Content</a></li>
+          <li><a href="{% url 'stuInfo' %}">Students</a></li>
+          <li><a href="{% url 'makeTest' %}">Create Test</a></li>
+          <li><a href="{% url 'stuResults' %}">Results</a></li>
+          <li><a href="{% url 'instructorHome' %}">Welcome, Username</a></li>
+        </ul>
+{% endblock %}
+{% block body %}
+      <section id="work-shop" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="header-section text-center" style="background:#f2f2f2">
+              <h2 style="font-size:35px;">Upload Content</h2>
+              <hr class="bottom-line">
+            </div>
+            <div class="col-md-12 col-sm-3">
+              <form class="md-form" style="">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1" style="margin-bottom: 10px;">Topic Name</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Topic">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1" style="margin-bottom: 10px;">Brief About Topic</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="40"></textarea>
+                </div>
+                <div class="input-group" >
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            Browse&hellip; <input type="file" style="display: none;height:43px;" id="upload">
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" style="height:43px;" placeholder="Upload File" readonly>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-lg btn-block">Upload</button>
+              </form>
+                </div>
+
+            </div>
+            </div>
+      </section>
+{% endblock %}

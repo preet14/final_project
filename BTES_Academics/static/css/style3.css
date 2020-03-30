@@ -1,0 +1,5 @@
+@media print {
+ #ghostery-purple-box {
+  display:none !important
+ }
+}

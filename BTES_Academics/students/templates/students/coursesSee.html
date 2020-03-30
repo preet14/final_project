@@ -1,0 +1,79 @@
+{% extends 'students/basic.html' %}
+{% block title %} Student | See Course {% endblock %}
+{% block links %}
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<!--==============================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
+    <!--================================================================================================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!--====================================================================================================-->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+{% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'student_homepage' %}">Home</a></li>
+          <li><a href="{% url 'studentCourses' %}">See Content</a></li>
+          <li><a href="{% url 'student_test' %}">Tests</a></li>
+          <li><a href="{% url 'studentResults' %}">My Results</a></li>
+          <li><a href="{% url 'student_homepage' %}">Welcome, Username</a></li>
+        </ul>
+{% endblock %}
+{% block body %}
+{% load static %}
+ <div class="banner">
+    <div class="bg-color">
+      <div class="container">
+        <div class="row">
+          <div class="banner-text text-center">
+            <div class="text-border">
+              <h2 class="text-dec">Trust & Quality</h2>
+            </div>
+            <div class="intro-para text-center quote">
+              <p class="big-text">Learning Today . . . Leading Tomorrow.</p>
+            </div>
+            <a href="#work-shop" class="mouse-hover">
+              <div class="mouse"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <section id="work-shop" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="header-section text-center">
+              <h2 style="font-size:35px;">Courses Enrolled</h2>
+              <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="service-box text-center">
+                <div class="icon-text">
+                  <img src="{% static 'img/pythonContents.png' %}" alt="" class="contentimg-2" style="margin-left: 95px;">
+                  <h1 class="ser-text">Python</h1><br>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'studentSeeContent' %}' ">Go To Topics</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="service-box text-center">
+                <div class="icon-text">
+                  <img src="{% static 'img/django.png' %}" alt="" class="contentimg-3">
+                  <h1 class="ser-text">Django</h1><br>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'studentSeeContent' %}'">Go To Topics</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

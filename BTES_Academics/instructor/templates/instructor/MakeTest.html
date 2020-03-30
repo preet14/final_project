@@ -1,0 +1,167 @@
+{% extends 'instructor/basic.html' %}
+{% block title %} Instructor | Make Test {% endblock %}
+{% block links %}
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<!--===================================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gfg.min.css' %}">
+  <!--==================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+  <!--===================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">
+  <!--===================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+
+{% endblock %}
+{% block css %}
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.bottom-line {
+    width: 25px;
+    height: 3px;
+    background-color: rgb(99, 122, 145);
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.center {
+  overflow: hidden;
+  display:table;
+  position: relative;
+  margin: auto;
+  width: 60%;
+  border: 3px solid #00e673;
+  padding: 10px;
+  height:70%;
+}
+.button
+{
+  background-color: #00b33c;
+  border: none;
+  color: white;
+  padding: 5px 31px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin:0 auto;
+  border-radius: 7px;
+   transition: all 0.5s;
+   float:right;
+   margin-right: 10px;
+   cursor:pointer;
+}
+.button:hover {background-color: #008000}
+
+.button2
+{
+  background-color: #00b33c;
+  border: none;
+  color: white;
+  padding: 5px 31px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin:0 auto;
+  border-radius: 7px;
+   transition: all 0.5s;
+   float:right;
+   margin-right: 30px;
+   cursor:pointer;
+}
+.button2:hover {background-color: #008000}
+
+input[type=text] {
+   width: 40%;
+  padding: 4px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;;
+}
+input[type=text]:focus {
+  border: 3px solid #00e673;
+}
+
+#ques{
+  width: 100%;
+}
+{% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'instructorHome' %}" >Home</a></li>
+          <li><a href="{% url 'seeContents' %}">See/Edit Content</a></li>
+          <li><a href="{% url 'uploadContents' %}" >Upload Content</a></li>
+          <li><a href="{% url 'stuInfo' %}">Students</a></li>
+          <li><a href="{% url 'makeTest' %}" style="color:#5FCF80;">Create Test</a></li>
+          <li><a href="{% url 'stuResults' %}">Results</a></li>
+          <li><a href="{% url 'instructorHome' %}">Welcome, Username</a></li>
+        </ul>
+{% endblock %}
+{% block body %}
+      <!--work-shop-->
+      <section id="work-shop" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="header-section text-center">
+                <h2>Make Test</h2>
+                <hr class="bottom-line">
+              </div>
+              <div class="center">
+                    <form action="">
+                      <label for="ques">Question 1</label><br>
+                          <input type="text" id="ques" name="ques" class="que"><br><br>
+                      <label for="opt">Options</label><br>
+                      <label for="A">A&nbsp;&nbsp;</label>
+                          <input type="text" id="A" name="A"><br><br>
+                      <label for="B">B&nbsp;&nbsp;</label>
+                          <input type="text" id="B" name="B"><br><br>
+                      <label for="C">C&nbsp;&nbsp;</label>
+                          <input type="text" id="C" name="C"><br><br>
+                      <label for="D">D&nbsp;&nbsp;</label>
+                          <input type="text" id="D" name="D"><br><br>
+                      <label for="opt">Correct Option</label><br>
+                      <label for="A">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                          <input type="text" id="A" name="A"><br><br>
+                      </form>
+                            <div id="footers">
+                                 <button class="button"><span>Add Next</span></button>
+                            </div>
+                            <div id="footers">
+                                 <button class="button2"><span>Save Test</span></button>
+                            </div>
+              </div>
+            </div>
+            </div>
+            </div>
+      </section>
+{% endblock %}
