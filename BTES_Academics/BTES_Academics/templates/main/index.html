@@ -64,7 +64,8 @@
           <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
             <div class="form-group">
-              <form name="" id="loginForm">
+              <form name="" action="{% url 'login' %}" method="post" id="loginForm">
+                {% csrf_token %}
                 <div class="form-group has-feedback">
                   <!----- username -------------->
                   <input class="form-control" name="uname" placeholder="Username" id="loginid" type="text" autocomplete="off" />
@@ -88,7 +89,7 @@
                     </div>
                   </div> -->
                   <div class="col-xs-12">
-                    <button type="button" class="btn btn-green btn-block btn-flat" onclick="userlogin()">Sign In</button>
+                    <button class="btn btn-green btn-block btn-flat" type="submit">Sign In</button>
                   </div>
                 </div>
               </form>

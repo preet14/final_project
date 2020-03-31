@@ -103,7 +103,11 @@
   transition: all 0.5s;
 }
 .button3:hover {background-color: #00b33c}
-
+#footers {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+}
 {% endblock %}
 {% block nav %}
         <ul class="nav navbar-nav navbar-right">
@@ -120,12 +124,12 @@
           <div class="row">
             
             <div class="header-section text-center">
-              <h2>Topic</h2>
+              <h2 style="font-size:35px;">Topic</h2>
               <hr class="bottom-line">
             </div>
             
-            <div class="center">
-              <h1 align="center">If else(Python)</h1><br>
+            <div class="center" style="font-size:15px;">
+              <h1 align="center" style="font-size:25px;">If else(Python)</h1><br>
               <h3 align="left">Syntax:</h3><br>
               <p align="left">if(condition):</p><br>
               <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indented Statement Block for when condition is TRUE</p><br>
@@ -134,16 +138,17 @@
                <p align="left">The block of lines indented the same amount after the colon (:) will be executed whenever the condition is TRUE.The colon (:) is important because it separates the condition from the statements to be executed after the evaluation of the condition. This is specially important for statements where there is only a single statement and the bracket ( ) is not used.</p><br>
                 
                 <!--suppress XmlDuplicatedId -->
-                <div id="footer">
+                <div id="footers">
                    <button class="button"><span>Download File</span></button>
                 </div>
 
-                <div id="footer">
-                   <button class="button2"><span>Back</span></button>
-                </div>
+<!--                <div id="footers">-->
+<!--                   <button class="button2"><span>Back</span></button>-->
+<!--                </div>-->
 
-                <div id="footer">
-                   <button class="button3"><span>Next</span></button>
+                <div id="footers">
+                  <button class="button2" align="left"><span>Back</span></button>
+                  <button class="button3"><span>Next</span></button>
                 </div>
             </div>
             </div>
