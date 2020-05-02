@@ -2,11 +2,16 @@
 {% block title %} Student | Home {% endblock %}
 {% block nav %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'student_homepage' %}">Home</a></li>
-          <li><a href="{% url 'studentCourses' %}">See Content</a></li>
-          <li><a href="{% url 'student_test' %}">Tests</a></li>
-          <li><a href="{% url 'studentResults' %}">My Results</a></li>
-          <li><a href="{% url 'student_homepage' %}">Welcome, Username</a></li>
+          <li><a href="{% url 'student_homepage' student1 %}" style="color:#5FCF80;">Home</a></li>
+          <li><a href="{% url 'studentCourses' student1 %}">See Content</a></li>
+          <li><a href="{% url 'studentDiscussion' student1 %}">Discussion</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="dropdown" style="margin-top: 0">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user.first_name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'myInfo' student1 %}">My Information</a></li>
+            </ul>
+          </li>
         </ul>
 {% endblock %}
 {% block body %}
@@ -80,4 +85,9 @@
     </div>
   </div>
 <!-- end of Feature -->
+<script>
+  {% for i in messages %}
+  alert("{{i}}")
+  {% endfor %}
+</script>
 {% endblock %}

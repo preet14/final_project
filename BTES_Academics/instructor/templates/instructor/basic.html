@@ -9,37 +9,41 @@
 <!-- External CSS Files -->
   {% load static %}
   {% block links %} {% endblock %}
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
-  <!-- ==================================================================== -->
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/imagehover.min.css' %}">
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/gfg.min.css' %}">
-  <!--====================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
-  <!--======================================================================  -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">
-  <!--======================================================================= -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
-  <!-- ====================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
-  <!--======================================================================= -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/hamburgers.min.css' %}">
-  <!--======================================================================= -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
-  <!--======================================================================= -->
+<!--  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/imagehover.min.css' %}">-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">-->
+<!--  &lt;!&ndash; ==================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/gfg.min.css' %}">-->
+<!--  &lt;!&ndash;====================================================================== &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">-->
+<!--  &lt;!&ndash;======================================================================  &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">-->
+<!--  &lt;!&ndash;======================================================================= &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">-->
+<!--  &lt;!&ndash;======================================================================= &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/hamburgers.min.css' %}">-->
+<!--  &lt;!&ndash;======================================================================= &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">-->
+<!--  &lt;!&ndash;======================================================================= &ndash;&gt;-->
+
   <style type="text/css">
     p{
       font:caption;
     }
+@media (min-width: 768px)
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: -30px;
+}
     {% block css %} {% endblock %}
 
   </style>
@@ -48,7 +52,7 @@
 
 <body>
   <!--Navigation bar-->
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default navbar-fixed-top" style="margin-left: -30px;">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -56,7 +60,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'instructorHome' %}">BTES_<span>Academics</span></a>
+        <a class="navbar-brand">BTES_<span>Academics</span></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <!-- <ul class="nav navbar-nav navbar-right">

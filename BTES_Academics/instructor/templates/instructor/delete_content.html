@@ -1,0 +1,58 @@
+{% extends 'instructor/basic.html' %}
+{% block title %} Instructor | Edit Contents {% endblock %}
+{% block links %}
+{% load static %}
+{% load mathfilters %}
+{% load my_tags %}
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+    <!--===================================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gfg.min.css' %}">
+  <!--==================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+  <!--===================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">
+  <!--===================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bt.css' %}">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+
+{% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right" style="margin-left:-29px;margin-right:-45px;">
+          <li><a href="{% url 'instructorHome' instructor1 %}" >Home</a></li>
+          <li><a href="{% url 'seeContents' instructor1 %}" style="color:#5FCF80;">See/Edit Content</a></li>
+          <li><a href="{% url 'uploadContents' instructor1 %}">Upload Content</a></li>
+          <li><a href="{% url 'stuInfo' instructor1 %}">Students</a></li>
+          <li><a href="{% url 'discussInfo' instructor1 %}">Discussion</a></li>
+          <li><a href="{% url 'instructorHome' instructor1 %}">Welcome, {{request.user.username}}</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+{% endblock %}
+{% block body %}
+<!--work-shop-->
+      <section id="work-shop" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="header-section text-center">
+              <h2 style="font-size:35px;">Edit Contents</h2>
+              <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
+            </div>
+              <p>Are You Sure You want to delete {{study.topic}} {{study.id}}</p>
+                <form method="POST" action="{% url 'deleteContents' instructor1 study.id %}">
+                    {% csrf_token %}
+                    <a type="button" class="btn btn-primary btn-lg btn-block" href="{% url 'editContents' instructor1 cs %}" style="background-color:red;">Cancel</a>
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Confirm">
+                </form>
+            </div>
+        </div>
+      </section>
+{% endblock %}

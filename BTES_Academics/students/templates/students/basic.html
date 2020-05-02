@@ -54,7 +54,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">BTES_<span>Academics</span></a>
+        <p class="navbar-brand">BTES_<span>Academics</span></p>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <!-- <ul class="nav navbar-nav navbar-right">
@@ -79,6 +79,9 @@
   <script src="{% static 'js/custom.js' %}"></script>
   <script src="{% static 'js/contactform.js' %}"></script>
   <script src="{% static 'js/all.js' %}"></script>
+  <script>
+    {% block jscript %} {% endblock %}
+  </script>
 </body>
 
 </html>

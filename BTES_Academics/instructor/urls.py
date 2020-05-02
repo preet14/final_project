@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 urlpatterns = [
-    path('', views.home, name='instructorHome'),
-    path('uploadContents', views.uploadContents, name='uploadContents'),
-    path('editContents', views.editContents, name='editContents'),
-    path('seeContents', views.seeContents, name='seeContents'),
-    path('stuInfo', views.stu_Info, name='stuInfo'),
-    path('stuResults', views.stu_Results, name='stuResults'),
-    path('makeTest', views.makeTest, name='makeTest'),
+    path('', views.home1, name='instructorHome'),
+    path('<int:pk>/', views.home, name='instructorHome'),
+    path('<int:pk>/uploadContents', views.uploadContents, name='uploadContents'),
+    path('<int:pk>/editContents/<str:info>/', views.editContents, name='editContents'),
+    path('<int:pk>/changeContents/<int:pid>/', views.changeContents, name='changeContents'),
+    path('<int:pk>/deleteContents/<int:pid>/', views.deleteContents, name='deleteContents'),
+    path('<int:pk>/seeContents', views.seeContents, name='seeContents'),
+    path('<int:pk>/discussInfo', views.discussInst, name='discussInfo'),
+    path('<int:pk>/stuInfo', views.stu_Info, name='stuInfo'),
+    path('<int:pk>/stuResults', views.stu_Results, name='stuResults'),
+    path('<int:pk>/makeTest', views.makeTest, name='makeTest'),
 ]
+

@@ -18,12 +18,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.stu_home, name="student_homepage"),
-    path('studentCourses', views.stu_courses, name="studentCourses"),
-    path('studentSeeContent', views.stu_content, name="studentSeeContent"),
+    path('', views.stu_home2, name="student_homepage"),
+    path('<int:pk>/', views.stu_home, name="student_homepage"),
+    path('<int:pk>/studentCourses', views.stu_courses, name="studentCourses"),
+    path('<int:pk>/studentDiscussion', views.discussStudent, name="studentDiscussion"),
+    path('<int:pk>/studentSeeContent/<str:info>/', views.stu_content, name="studentSeeContent"),
+    path('<int:pk>/myInfo', views.myInfo, name="myInfo"),
     path('studentResults', views.see_results, name="studentResults"),
-    path('student_topicsInfo', views.stu_topicinfo, name="student_topicsInfo"),
+    path('<int:pk>/student_topicsInfo/<str:info>/<str:topic>/', views.stu_topicinfo, name="student_topicsInfo"),
     path('student_test', views.stu_test, name="student_test"),
+
+    path('password_change/done/',
+         auth_views.PasswordChangeDoneView.as_view(template_name='students/password_change_done.html'),
+         name='password_change_done'),
+
+    path('<int:pk>/password_change/', auth_views.PasswordChangeView.as_view(template_name='students/password_change.html'),
+         name='password_change'),
+
 ]

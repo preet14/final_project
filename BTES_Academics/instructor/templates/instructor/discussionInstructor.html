@@ -1,0 +1,232 @@
+{% extends 'students/basic.html' %}
+{% block title %} Instructor | Discussion {% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'instructorHome' instructor1 %}" >Home</a></li>
+          <li><a href="{% url 'seeContents' instructor1 %}">See/Edit Content</a></li>
+          <li><a href="{% url 'uploadContents' instructor1 %}">Upload Content</a></li>
+          <li><a href="{% url 'stuInfo' instructor1 %}">Students</a></li>
+          <li><a href="{% url 'discussInfo' instructor1 %}" style="color:#5FCF80;">Discussion</a></li>
+          <li><a href="{% url 'instructorHome' instructor1 %}">Welcome, {{request.user.username}}</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+{% endblock %}
+{% block css %}
+body
+{ max-width: 100%;
+overflow-x: hidden;
+}
+.comments-details button.btn.dropdown-toggle,
+.comments-details .total-comments {
+    font-size: 18px;
+    font-weight: 500;
+    color: #5e5e5e;
+}
+.comments-details {
+    padding: 15px 15px;
+}
+.comments .comments .dropdown,
+.comments .dropup {
+    position: relative;
+}
+.comments button {
+    background-color: transparent;
+    border: none;
+}
+.comments .comment-box {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: #FAFAFA;
+    padding: 10px 10px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #5FCF80;
+}
+.comments .add-comment {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    margin-bottom: 95px;
+    left:80px;
+}
+.comments .commenter-pic {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    overflow: hidden;
+    background-color: #fff;
+}
+.comments .add-comment .commenter-name {
+    width: 100%;
+<!--    padding-left: 85px;-->
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+.comments .add-comment input {
+    border-top: 0px;
+    border-bottom: 1px solid #ccc;
+    border-left: 0px;
+    border-right: 0px;
+    outline: 0px;
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+    font-weight: normal;
+}
+.comments .add-comment input:focus {
+    border-color: #03a9f4;
+    border-width: 2px;
+}
+.comments .add-comment button[type=submit] {
+    background-color: #03a9f4;
+    color: #fff;
+    margin-right: 0px;
+}
+.comments .add-comment button {
+    background-color: #f5f5f5;
+    margin: 10px 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: right;
+}
+.comments .commenter-name .comment-time {
+    font-weight: normal;
+    margin-left: 8px;
+    font-size: 15px;
+}
+.comments p.comment-txt {
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+    padding: 0px 0px 15px;
+}
+.comments .commenter-name {
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.comments .comment-meta {
+    font-size: 14px;
+    color: #333;
+    padding: 2px 5px 0px;
+    line-height: 20px;
+    float: right;
+}
+.comments .reply-box {
+    display: none;
+}
+.comments .replied {
+    background-color: #fff;
+    width: 95%;
+    float: right;
+    margin-top: 15px;
+}
+
+/*======Responsive CSS=======*/
+@media (max-width: 767px){
+.comments .commenter-name {
+    font-size: 13px;
+    top: -5px;
+}
+.comments .commenter-pic {
+    width: 40px;
+    height: 40px;
+}
+.comments .commenter-name a{
+  display: block;
+}
+.comments .commenter-name .comment-time{
+  display: block;
+  margin-left: 0px;
+}
+}
+{% endblock %}
+{% block body %}
+<!--Banner-->
+
+  <!--Feature-->
+<div class="container" style="background:#f2f2f2;">
+  <div class="row">
+    <div class="col-8" style="margin-top:-38px;padding:130px;">
+        <div class="header-section text-center">
+              <h2 style="font-size:35px;">Discussions</h2>
+              <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
+            </div>
+      <div class="comments">
+
+        <div class="comment-box add-comment" style="left:10px;">
+            <div class="form-group" style="margin-bottom: 0px;">
+              <form method="post">
+                      {% csrf_token %}
+                      {{forms}}<br>
+                      <input type="submit" class="btn btn-primary" value="Comment" style="height:50px;width:100px;background:#5FCF80;">
+              </form>
+            </div>
+        </div>
+           <div class="comments-details">
+          <span class="total-comments comments-sort">{{comments.count}} Discussions</span>
+        </div>
+          {% for i in comments %}
+        <div class="comment-box">
+
+          <span class="commenter-name">
+            {{i.user }}
+          </span>
+          <p class="comment-txt more">{{i.content}}</p>
+          <div class="comment-meta">
+            <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+          </div>
+
+          <div class="comment-box add-comment reply-box" style="">
+              {% for reply in i.replies.all %}
+
+                  <span class="commenter-name">
+                    {{reply.user}}
+                  </span>
+                  <p class="comment-txt more">{{reply.content}}</p>
+                    <div class="comment-meta">
+                    </div>
+
+              {% endfor %}
+<div class="comment-box add-comment">
+                <div class="form-group row" style="font-size:10px">
+                  <form method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="comment_id" value="{{i.id}}">
+                      {{forms.as_p}}
+                      <input type="submit" class="btn btn-primary" value="Reply" style="height:30px;width:100px;background:#5FCF80;">
+                  </form>
+                </div>
+</div>
+          </div>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end of Feature -->
+{% load static %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script>
+// Reply box popup JS
+$(document).ready(function(){
+  $(".reply-popup").click(function(){
+    $(this).parent().next(".reply-box").toggle();
+  });
+});
+document.getElementById('id_content').setAttribute('style','height:200px;width:600px;margin-bottom:10px;font-size:20px');
+
+</script>
+
+{% endblock %}

@@ -108,51 +108,172 @@
     text-align: center;
     padding: 40px 0;
 }
+.mtq_wrong_marker {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url(https://www.geeksforgeeks.org/wp-content/plugins/mtouch-quiz/images/wrong.png) no-repeat 0 0;
+}
 {% endblock %}
 {% block nav %}
         <ul class="nav navbar-nav navbar-right">
-         <li><a href="{% url 'student_homepage' %}">Home</a></li>
-          <li><a href="{% url 'studentCourses' %}">See Content</a></li>
-          <li><a href="{% url 'student_test' %}">Tests</a></li>
-          <li><a href="{% url 'studentResults' %}">My Results</a></li>
-          <li><a href="{% url 'student_homepage' %}" data-target="#login" data-toggle="modal">Welcome, Username</a></li>
+         <li><a href="{% url 'student_homepage' student1 %}">Home</a></li>
+          <li><a href="{% url 'studentCourses' student1 %}" style="color:#5FCF80;">See Content</a></li>
+          <li><a href="{% url 'studentDiscussion' student1 %}">Discussion</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="dropdown" style="margin-top: 0">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user.first_name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'myInfo' student1 %}">My Information</a></li>
+            </ul>
+          </li>
         </ul>
 {% endblock %}
 {% block body %}
 <section id="work-shop" class="section-padding">
         <div class="container">
           <div class="row">
-            
+            {% for post in posts %}
             <div class="header-section text-center">
-              <h2 style="font-size:35px;">Topic</h2>
-              <hr class="bottom-line">
+              <h2 style="font-size:35px;">{{post.topic}}</h2>
+              <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
             </div>
             
             <div class="center" style="font-size:15px;">
-              <h1 align="center" style="font-size:25px;">If else(Python)</h1><br>
-              <h3 align="left">Syntax:</h3><br>
-              <p align="left">if(condition):</p><br>
-              <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indented Statement Block for when condition is TRUE</p><br>
-              <p align="left">else:</p><br>
-                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indented Statement Block for when condition is FALSE</p><br>
-               <p align="left">The block of lines indented the same amount after the colon (:) will be executed whenever the condition is TRUE.The colon (:) is important because it separates the condition from the statements to be executed after the evaluation of the condition. This is specially important for statements where there is only a single statement and the bracket ( ) is not used.</p><br>
-                
-                <!--suppress XmlDuplicatedId -->
+<!--              <h1 align="center" style="font-size:25px;">{{post.topic}}</h1><br>-->
+
+                <p align="left">{{post.content|linebreaksbr}}</p><br>
+               {% if flag %}
+                  {% for q in quiz %}
+                    <div class="row">
+                        <div class="col-12" style="background-color:#f2f2f2">
+                        <br>
+                        <div id="mtq_question_container-1" style="display: block;">
+                        <div class="pagesDivs allQuestionsDiv1">
+                        <div class="mtq_question mtq_scroll_item-1" id="mtq_question-1-1" style="width: 660px;">
+                          <table class="mtq_question_heading_table">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div class="mtq_question_label ">Question {{forloop.counter}}</div>
+                                  <div id="mtq_stamp-1-1" class="mtq_stamp"></div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div id="mtq_question_text-1-1" class="mtq_question_text">{{ q.Question }}</div>
+                          <table class="mtq_answer_table">
+                            <colgroup>
+                              <col class="mtq_oce_first">
+                            </colgroup>
+                            <tbody>
+                              <tr id="mtq_row-1-1-1" class="mtq_clickable">
+                                <td class="mtq_letter_button_td">
+                                  <div id="mtq_button-1-1-1" class="mtq_css_letter_button mtq_letter_button_0" class="mtq_marker mtq_wrong_marke style="display: block;">A</div>
+<!--                                  <div id="mtq_marker-1-1-1" class="mtq_marker mtq_wrong_marker" alt="Wrong" style="display: block;"></div>-->
+                                </td>
+                                <td class="mtq_answer_td">
+                                  <div id="Q{{forloop.counter}}-1" class="mtq_answer_text" onclick="myFunction(this.id,'{{q.correctOption}}')" value="{{q.optionA}}">{{q.optionA}}</div>
+                                </td>
+                              </tr>
+                              <tr id="mtq_row-1-2-1" class="mtq_clickable">
+                                <td class="mtq_letter_button_td">
+                                    <div id="mtq_button-1-2-1" class="mtq_css_letter_button mtq_letter_button_1">B</div>
+                                </td>
+                                <td class="mtq_answer_td">
+
+                                  <div id="Q{{forloop.counter}}-2" class="mtq_answer_text" onclick="myFunction(this.id,'{{q.correctOption}}')" value="{{q.optionB}}">{{q.optionB}}</div>
+                                </td>
+                              </tr>
+                              <tr id="mtq_row-1-3-1" class="mtq_clickable">
+                                <td class="mtq_letter_button_td">
+                                    <div id="mtq_button-1-3-1" class="mtq_css_letter_button mtq_letter_button_2">C</div>
+                                </td>
+                                <td class="mtq_answer_td">
+
+                                  <div id="Q{{forloop.counter}}-3" class="mtq_answer_text" onclick="myFunction(this.id,'{{q.correctOption}}')" value="{{q.optionC}}">{{q.optionC}}</div>
+                                </td>
+                              </tr>
+                              <tr id="mtq_row-1-4-1" class="mtq_clickable">
+                                <td class="mtq_letter_button_td">
+                                  <div id="mtq_button-1-4-1" class="mtq_css_letter_button mtq_letter_button_3">D</div>
+                                </td>
+                                <td class="mtq_answer_td">
+                                  <div id="Q{{forloop.counter}}-4" class="mtq_answer_text" onclick="myFunction(this.id,'{{q.correctOption}}')" value="{{q.optionD}}">{{q.optionD}}</div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <b></b><br><br><br>
+                          <div id="exp{{forloop.counter}}" class="mtq_explanation" style="display:none;">
+                            <div class="mtq_explanation-label">Question {{forloop.counter}} Explanation:&nbsp;<br>{{q.explanation}}</div>
+                            <div class="mtq_explanation-text">
+
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
                 <div id="footers">
-                   <button class="button"><span>Download File</span></button>
+                   <a class="button" download href="{{post.filepath.url}}"><span>Download File</span></a>
                 </div>
 
-<!--                <div id="footers">-->
-<!--                   <button class="button2"><span>Back</span></button>-->
-<!--                </div>-->
-
                 <div id="footers">
-                  <button class="button2" align="left"><span>Back</span></button>
-                  <button class="button3"><span>Next</span></button>
+                  {% if posts.has_previous %}
+                  <a class="button2" align="left" href="?page={{posts.previous_page_number}}"><span>Previous</span></a>
+                  {% endif %}
+                  {% if posts.has_next %}
+                  <a class="button3" href="?page={{posts.next_page_number}}"><span>Next</span></a>
+                  {% endif %}
                 </div>
             </div>
-            </div>
-            </div>
+            {% endfor %}
+
+          </div>
+        </div>
       </section>
-
+<script>
+  function myFunction(id,ans) {
+		var c = id
+		var ch = document.getElementById(c).getAttribute('value');
+		var y = c.toString()
+		var res = y.charAt(y.length-1); // 3 for correct
+		var x = c.toString().substr(0,3)// Q1-
+		var y = c.toString().substr(1,1)
+		console.log(x,y)
+		if(ch == ans){
+			document.getElementById(c).style.color = "#55b23ef2"
+			for (var i = 1; i < 5; i++) {
+				var str = x+i;
+				if(str!=y){
+					console.log("ye")
+					document.getElementById(str).onclick = "#";
+				}
+			}
+			var st = "exp"+y;
+			document.getElementById(st).style.display='block';
+		}
+		else{
+			document.getElementById(c).style.color = "#ec0a2de6"
+			for (var i = 1; i < 5; i++) {
+				var str = x+i;
+				var check = document.getElementById(str).getAttribute('value')
+				console.log(check)
+				console.log(ans)
+				if(check==ans){
+				  document.getElementById(str).style.color = "#55b23ef2"
+				}
+				if(str!=y){
+					document.getElementById(str).onclick = "#";
+				}
+			}
+			var st = "exp"+y;
+			document.getElementById(st).style.display='block';
+		}
+   }
+</script>
 {% endblock %}

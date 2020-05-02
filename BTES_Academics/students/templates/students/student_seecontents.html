@@ -2,6 +2,8 @@
 {% block title %} Student | See Course {% endblock %}
 {% block links %}
 {% load static %}
+{% load mathfilters %}
+{% load my_tags %}
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
 <!--==============================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
@@ -20,11 +22,16 @@
 {% endblock %}
 {% block nav %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'student_homepage' %}">Home</a></li>
-          <li><a href="{% url 'studentCourses' %}">See Content</a></li>
-          <li><a href="{% url 'student_test' %}">Tests</a></li>
-          <li><a href="{% url 'studentResults' %}">My Results</a></li>
-          <li><a href="{% url 'student_homepage' %}">Welcome, Username</a></li>
+          <li><a href="{% url 'student_homepage' student1 %}">Home</a></li>
+          <li><a href="{% url 'studentCourses' student1 %}" style="color:#5FCF80;">See Content</a></li>
+          <li><a href="{% url 'studentDiscussion' student1 %}">Discussion</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="dropdown" style="margin-top: 0">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user.first_name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'myInfo' student1 %}">My Information</a></li>
+            </ul>
+          </li>
         </ul>
 {% endblock %}
 {% block body %}
@@ -34,56 +41,29 @@
         <div class="container">
           <div class="row">
             <div class="header-section text-center">
-              <h2 style="font-size:35px;">My Course</h2>
+              <h2 style="font-size:35px;">My Courses</h2>
               <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
             </div>
+            {% for i in courses %}
+            {% if forloop.counter|modulo:4 == 1 %}
+               <div class="row">
+            {% endif %}
             <div class="col-md-3 col-sm-3">
               <div class="service-box text-center">
                 <div class="icon-box" style="margin-left:auto;margin-right:auto;">
                   <img src="{% static 'img/pythonContents.png' %}" alt="" class="contentimg">
-                  <h4 class="ser-text">Topic Name</h4>
+                  <h4 class="ser-text">{{i.topic}}</h4>
                 </div>
                 <div class="icon-text">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'student_topicsInfo' %}' " >See</button>
+                  <a class="btn btn-primary btn-lg btn-block" href="{% url 'student_topicsInfo' student1 info i.topic %}?page={{i.id}}">See</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-3 col-sm-3">
-              <div class="service-box text-center">
-                <div class="icon-box" style="margin-left:auto;margin-right:auto;">
-                  <img src="{% static 'img/pythonContents.png' %}" alt="" class="contentimg">
-                  <h4 class="ser-text">Topic Name</h4>
+              {% if forloop.last or forloop.counter|modulo:4 == 0 %}
+                  </div>
+              {% endif %}
+            {% endfor %}
 
-                </div>
-                <div class="icon-text">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'student_topicsInfo' %}' ">See</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-3">
-              <div class="service-box text-center">
-                <div class="icon-box" style="margin-left:auto;margin-right:auto;">
-                  <img src="{% static 'img/pythonContents.png' %} " alt="" class="contentimg">
-                  <h4 class="ser-text">Topic Name</h4>
-
-                </div>
-                <div class="icon-text">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'student_topicsInfo' %}' ">See</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-3">
-              <div class="service-box text-center">
-                <div class="icon-box" style="margin-left:auto;margin-right:auto;">
-                  <img src="{% static 'img/pythonContents.png' %}" alt="" class="contentimg">
-                  <h4 class="ser-text">Topic Name</h4>
-
-                </div>
-                <div class="icon-text">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'student_topicsInfo' %}' ">See</button>
-                </div>
-              </div>
-            </div>
             </div>
             </div>
       </section>

@@ -15,15 +15,24 @@
   <!-- ==================================================================== -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-touch-slider' %}">
   <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bt.css' %}">
   <!-- ==================================================================== -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/imagehover.min.css' %}">
   <!-- ==================================================================== -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <!-- ==================================================================== -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+ <!-- ==================================================================== -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
   <!-- ==================================================================== -->
-
+<style>
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    margin-top: 22px;
+    margin-bottom: -11px;
+    text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -38,19 +47,28 @@
         </button>
         <a class="navbar-brand" href="{% url 'homepage' %}">BTES_<span>Academics</span></a>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
+      <div class="" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{% url 'homepage' %}" class="active" style="color:#5FCF80;">Home</a></li>
           <li><a href="{% url 'aboutUs' %}">About Us</a></li>
           <li><a href="{% url 'contactUs' %}">Contact Us</a></li>
-          <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li>
+          <li><a href="#" data-target="#login" data-toggle="modal" id="sgn">Sign in</a></li>
         </ul>
       </div>
+
     </div>
   </nav>
   <!--/ Navigation bar-->
   <!--Modal box-->
-  <div class="modal fade" id="login" role="dialog">
+  <div class="alert alert-danger" role="alert">
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert alert-danger" role="alert" style="color:black;">{{msg}}</div>
+      {% endfor %}
+      {% endif %}
+</div>
+
+  <div class="modal" id="login">
     <div class="modal-dialog modal-sm">
 
       <!-- Modal content no 1-->
@@ -64,21 +82,29 @@
           <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
             <div class="form-group">
-              <form name="" action="{% url 'login' %}" method="post" id="loginForm">
+              <form name="" action="{% url 'login' %}" method="POST" id="loginForm">
                 {% csrf_token %}
                 <div class="form-group has-feedback">
                   <!----- username -------------->
-                  <input class="form-control" name="uname" placeholder="Username" id="loginid" type="text" autocomplete="off" />
+                  <input class="form-control" name="uname" placeholder="Username" id="loginid" type="text" autocomplete="off" autofocus />
                   <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
                   <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
                   <!----- password -------------->
                   <input class="form-control" name="pwd" placeholder="Password" id="loginpsw" type="password" autocomplete="off" />
                   <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
                   <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <!----- select -------------->
+                  <label for="exampleFormControlSelect1">Status</label>
+                  <select class="form-control" id="exampleFormControlSelect1" name="status">
+                    <option selected value="Student">Student</option>
+                    <option value="Instructor">Instructor</option>
+                  </select>
+                  <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id=""></span>
+                  <!---Alredy exists  ! -->
                 </div>
                 <div class="row">
                   <!-- <div class="col-xs-12">
@@ -89,7 +115,8 @@
                     </div>
                   </div> -->
                   <div class="col-xs-12">
-                    <button class="btn btn-green btn-block btn-flat" type="submit">Sign In</button>
+                    <button class="btn btn-green btn-block btn-flat" type="submit">Sign In</button><br>
+                    Forget Password ?<a href="{% url 'password_reset' %}" style="text-decoration:none;">Click here</a>
                   </div>
                 </div>
               </form>
@@ -103,6 +130,7 @@
   <!--/ Modal box-->
   <!--Banner-->
   <div class="banner">
+
     <div class="bg-color">
       <div class="container">
         <div class="row">
@@ -123,7 +151,7 @@
   </div>
   <!--/ Banner-->
   <!--Feature-->
- 
+
   <!--/ feature-->
   <!--Organisations-->
   <section id="feature" class="section-padding">
@@ -335,9 +363,15 @@
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/jquery.easing.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+<!--  <script src="{% static 'js/custom.js' %}"></script>-->
   <script src="{% static 'js/contactform.js' %}"></script>
-
+<script>
+  {% if f %}
+    {% for i in messages %}
+      alert("{{i}}");
+    {% endfor %}
+  {% endif %}
+</script>
 </body>
 
 </html>

@@ -1,0 +1,142 @@
+{% extends 'students/basic.html' %}
+{% block title %} Student | My Information {% endblock %}
+{% block links %}
+{% load static %}
+
+  <!--suppress ALL -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
+    <!--================================================================================================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!--====================================================================================================-->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+{% endblock %}
+{% block nav %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'student_homepage' student1 %}" style="color:#5FCF80;">Home</a></li>
+          <li><a href="{% url 'studentCourses' student1 %}">See Content</a></li>
+          <li><a href="{% url 'studentDiscussion' student1 %}">Discussion</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="dropdown" style="margin-top: 0">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user.first_name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'myInfo' student1 %}">My Information</a></li>
+            </ul>
+          </li>
+        </ul>
+{% endblock %}
+{% block css %}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.box {
+  width:100%;
+  height: 100%;
+}
+.box2{
+	border:3px solid #00e673;
+	border-radius: 10px;
+	width:90%;
+	margin-left: 80px;
+}
+
+.title {
+  color: grey;
+  font-size: 60px;
+  margin-top:0px;
+}
+
+.btn{
+  border-radius: 4px;
+  background-color: #00b33c;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-family: Courier;
+  margin-left: auto;
+    margin-right:auto;
+}
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+    color:white;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+h1{
+	color:#4d4d4d;
+}
+ul{
+	font-size: 30px;
+}
+h2{
+	text-align: center;
+	color:#1a1a1a;
+}
+{% endblock %}
+{% block body %}
+<section id="work-shop" class="section-padding">
+    <div class="container">
+          <div class="row">
+<div class="box">
+ <h1 style="font-size:40px;margin-top:0px;margin-bottom:20px"> {{request.user.first_name}} {{request.user.last_name}} </h1>
+    <hr style="width:10%;height:2px;border-width:0;color:gray;background-color:gray;margin-left:auto;margin-right:auto;">
+ 	<div class = "info">
+        {% for i in stuinfo %}
+ 		<div class="box2" style="padding:30px 30px;">
+
+
+	 		<ul style="list-style-type:none;color: #404040;">
+				<li><span><b>E-mail: </b></span>{{i.user.email}}</li>&nbsp;
+				<li><span><b>Phone Number: </b></span>+91-{{i.contact}}</li>&nbsp;
+				<li><span><b>Course: </b></span>{{i.course.courseName}}</li>&nbsp;
+				<li><span><b>Batch: </b></span>{{i.batch.batchName}}</li>&nbsp;
+				<li><span><b>Instructor: </b></span>Mr. {{i.instructor.user.first_name}} {{i.instructor.user.last_name}}</li>&nbsp;
+				<li><span><b>Instructor E-mail: </b></span>{{i.instructor.user.email}}</li>
+			</ul>
+		</div>
+        {% endfor %}
+ 	</div>
+
+ 	<p><a class="btn" href="{% url 'password_change' student1 %}"><span>Change Password</span></a></p>
+
+</div>
+          </div>
+    </div>
+</section>
+{% endblock %}

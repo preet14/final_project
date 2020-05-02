@@ -24,7 +24,7 @@ SECRET_KEY = '@l3yy^jn-_0f!s06q)kxmr#)s!qky#3^yy1xdg*+-1+v&gn_*!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['139.100.100.104', '127.0.0.1']
 
 # Application definition
 
@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'Details',
     'students',
     'instructor',
+    'mathfilters',
+    'import_export',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
+                           'BTES_Academics.Authenticate.EmailBackend']
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -123,3 +127,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "my.academicsProject.2020@gmail.com"
+EMAIL_HOST_PASSWORD = "myacademics"
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True

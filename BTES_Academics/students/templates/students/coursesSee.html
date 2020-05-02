@@ -20,11 +20,16 @@
 {% endblock %}
 {% block nav %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'student_homepage' %}">Home</a></li>
-          <li><a href="{% url 'studentCourses' %}">See Content</a></li>
-          <li><a href="{% url 'student_test' %}">Tests</a></li>
-          <li><a href="{% url 'studentResults' %}">My Results</a></li>
-          <li><a href="{% url 'student_homepage' %}">Welcome, Username</a></li>
+          <li><a href="{% url 'student_homepage' student1 %}">Home</a></li>
+          <li><a href="{% url 'studentCourses' student1 %}" style="color:#5FCF80;">See Content</a></li>
+          <li><a href="{% url 'studentDiscussion' student1 %}">Discussion</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="dropdown" style="margin-top: 0">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user.first_name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'myInfo' student1 %}">My Information</a></li>
+            </ul>
+          </li>
         </ul>
 {% endblock %}
 {% block body %}
@@ -55,24 +60,17 @@
               <h2 style="font-size:35px;">Courses Enrolled</h2>
               <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
             </div>
+              {% for i in courses %}
             <div class="col-md-6 col-sm-6">
               <div class="service-box text-center">
                 <div class="icon-text">
                   <img src="{% static 'img/pythonContents.png' %}" alt="" class="contentimg-2" style="margin-left: 95px;">
-                  <h1 class="ser-text">Python</h1><br>
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'studentSeeContent' %}' ">Go To Topics</button>
+                  <h1 class="ser-text">{{i.courseName}}</h1><br>
+                  <a class="btn btn-primary btn-lg btn-block" href="{% url 'studentSeeContent' student1 i.courseName %}">Go To Topics</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-sm-6">
-              <div class="service-box text-center">
-                <div class="icon-text">
-                  <img src="{% static 'img/django.png' %}" alt="" class="contentimg-3">
-                  <h1 class="ser-text">Django</h1><br>
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick=" window.location.href='{% url 'studentSeeContent' %}'">Go To Topics</button>
-                </div>
-              </div>
-            </div>
+              {% endfor %}
           </div>
         </div>
       </section>

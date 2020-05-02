@@ -4,13 +4,11 @@
 {% load static %}
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
 <!--===================================================================================================-->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
     <!--===============================================================================================-->
@@ -21,17 +19,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">
   <!--===================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bt.css' %}">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
 
 {% endblock %}
 {% block nav %}
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'instructorHome' %}" >Home</a></li>
-          <li><a href="{% url 'seeContents' %}">See/Edit Content</a></li>
-          <li><a href="{% url 'uploadContents' %}" style="color:#5FCF80;">Upload Content</a></li>
-          <li><a href="{% url 'stuInfo' %}">Students</a></li>
-          <li><a href="{% url 'makeTest' %}">Create Test</a></li>
-          <li><a href="{% url 'stuResults' %}">Results</a></li>
-          <li><a href="{% url 'instructorHome' %}">Welcome, Username</a></li>
+        <ul class="nav navbar-nav navbar-right" style="margin-left:-29px;margin-right:-45px;"> 
+           <li><a href="{% url 'instructorHome' instructor1 %}" >Home</a></li>
+          <li><a href="{% url 'seeContents' instructor1 %}">See/Edit Content</a></li>
+          <li><a href="{% url 'uploadContents' instructor1 %}" style="color:#5FCF80;">Upload Content</a></li>
+          <li><a href="{% url 'stuInfo' instructor1 %}">Students</a></li>
+          <li><a href="{% url 'discussInfo' instructor1 %}">Discussion</a></li>
+          <li><a href="{% url 'instructorHome' instructor1 %}">Welcome, {{request.user.username}}</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
 {% endblock %}
 {% block body %}
@@ -40,32 +41,94 @@
           <div class="row">
             <div class="header-section text-center" style="background:#f2f2f2">
               <h2 style="font-size:35px;">Upload Content</h2>
-              <hr class="bottom-line">
+              <hr class="bottom-line" style="margin-left:auto;margin-right:auto;">
             </div>
-            <div class="col-md-12 col-sm-3">
-              <form class="md-form" style="">
-                <div class="form-group">
-                  <label for="exampleFormControlInput1" style="margin-bottom: 10px;">Topic Name</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Topic">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1" style="margin-bottom: 10px;">Brief About Topic</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="40"></textarea>
-                </div>
-                <div class="input-group" >
+            <div class="col-md-12 col-sm-12">
+              <form enctype="multipart/form-data" method="post" action="">
+                {% csrf_token %}
+                <div class="form-group mb-3">{{form.courseName}}</div>
+                <div class="form-group mb-3">{{form.topic}}</div>
+                <div class="form-group mb-3">{{form.content}}</div>
+                <div class="form-group mb-3">{{form.filename}}</div>
+                <div class="input-group mb-3">
                     <label class="input-group-btn">
-                        <span class="btn btn-primary">
-                            Browse&hellip; <input type="file" style="display: none;height:43px;" id="upload">
+                        <span class="btn btn-primary" style="background-color:#3eb28a;color:black;">
+                            Browse&hellip; {{form.filepath}}
                         </span>
                     </label>
-                    <input type="text" class="form-control" style="height:43px;" placeholder="Upload File" readonly>
+                    <input type="text" id="uploadFile1" class="form-control" style="height:43px;" placeholder="Upload File" readonly>
                 </div>
-                <br>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Upload</button>
+                  <br>
+                  <label for="upd">{{prompt}}</label>
+                  <div class="input-group mb-3">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary" style="background-color:#3eb28a;color:black;">
+                                Browse&hellip;<input type="file" name="qzfile" required id="upd">
+                            </span>
+                        </label>
+                        <input type="text" id="uploadFile2" class="form-control" style="height:43px;" placeholder="Upload CSV File" readonly>
+                  </div>
+                <br><br>
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <input class="btn btn-primary mb-2" type="submit" value="Upload" name="Create User" style="background-color:#5FCF80;color:#f2f2f2;font-size:20px;height:50px">
+                </div>
               </form>
                 </div>
 
             </div>
             </div>
       </section>
+<script>
+  //Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Topic..';
+		form_fields[2].placeholder='File Name..';
+		var form_fields1 = document.getElementsByTagName('select')
+        var form_fields2 = document.getElementsByTagName('textarea')
+
+        document.getElementById('id_filepath').style.display='none';
+        document.getElementById("id_filepath").onchange = function () {
+            document.getElementById("uploadFile1").value = this.value;
+        };
+        document.getElementById('upd').style.display='none';
+        document.getElementById("upd").onchange = function () {
+            document.getElementById("uploadFile2").value = this.value;
+        };
+        document.getElementById("id_content").placeholder = "Write Something...";
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control';
+		}
+
+        for (var field in form_fields1){
+			form_fields1[field].className += ' form-control';
+		}
+		form_sel = document.getElementById('id_courseName');
+		form_sel[0].value=0;
+		len = form_sel.options.length
+<!--		console.log(form_sel[0].value);-->
+		c=0;
+		{% for i in course %}
+		 console.log(c);
+		 for(j=0;j<len;j++){
+		    if (form_sel[j].value == {{i.pk}})
+		    {
+                form_sel.value = {{i.pk}};
+                form_sel[j].setAttribute('selected','selected');
+            }
+            else{
+                form_sel[j].setAttribute('disabled','disabled');
+            }
+         }
+<!--		    form_sel.setAttribute('disabled','disabled');-->
+		{% endfor %}
+
+
+		for (var field in form_fields2){
+			form_fields2[field].className += ' form-control';
+		}
+
+		var v = document.getElementById("id_filepath");
+        v.className += "form-control-file";
+</script>
 {% endblock %}

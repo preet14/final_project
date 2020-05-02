@@ -4,13 +4,13 @@
 {% load static %}
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
 <!--===================================================================================================-->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bt.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
     <!--===============================================================================================-->
@@ -21,17 +21,33 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style2i.css' %}">
   <!--===================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+  <!-- ==================================================================== -->
+  <!-- ==================================================================== -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bt.css' %}">
 
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+{% endblock %}
+{% block css %}
+.dropdown-menu .dropdown-divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+@media (min-width: 768px)
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: -30px;
+}
 {% endblock %}
 {% block nav %}
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'instructorHome' %}" style="color:#5FCF80;">Home</a></li>
-          <li><a href="{% url 'seeContents' %}">See/Edit Content</a></li>
-          <li><a href="{% url 'uploadContents' %}">Upload Content</a></li>
-          <li><a href="{% url 'stuInfo' %}">Students</a></li>
-          <li><a href="{% url 'makeTest' %}">Create Test</a></li>
-          <li><a href="{% url 'stuResults' %}">Results</a></li>
-          <li><a href="{% url 'instructorHome' %}">Welcome, Username</a></li>
+        <ul class="nav navbar-nav navbar-right" style="margin-left:-29px;margin-right:-45px;">
+          <li><a href="{% url 'instructorHome' instructor1 %}" style="color:#5FCF80;">Home</a></li>
+          <li><a href="{% url 'seeContents' instructor1 %}">See/Edit Content</a></li>
+          <li><a href="{% url 'uploadContents' instructor1 %}">Upload Content</a></li>
+          <li><a href="{% url 'stuInfo' instructor1 %}">Students</a></li>
+          <li><a href="{% url 'discussInfo' instructor1 %}">Discussion</a></li>
+          <li><a href="{% url 'instructorHome' instructor1 %}">Welcome, {{request.user.username}}</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
 {% endblock %}
 {% block body %}
@@ -105,4 +121,9 @@
     </div>
   </div>
 <!-- end of Feature -->
+<script>
+  {% for i in messages %}
+  alert("{{i}}")
+  {% endfor %}
+</script>
 {% endblock %}
